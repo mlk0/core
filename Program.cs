@@ -66,7 +66,7 @@ namespace core
             Console.WriteLine("defaultToolCommission : {0}, incetiveToolCommission : {1}, toolToolCommission : {2}", defaultToolCommission, incetiveToolCommission, toolToolCommission);
 
 
- soldLumber.Name = "Lumber";
+            soldLumber.Name = "Lumber";
             Console.WriteLine("Product : {0}, sold quantity : {1}, following is the commission calculation:", soldLumber.Name, soldLumber.NumberOfSoldLumber);
             
             var defaultLumberCommission = soldTools.GetCommission(defaultCommissionCalculator);
@@ -81,7 +81,13 @@ namespace core
              defaultLumberCommission, incetiveLumberCommission, lumberLumberCommission);
 
 
-
+             var toolBridge = new ToolBridge(defaultCommissionCalculator);
+             toolBridge.SoldItems = numberOfSoldTools;
+             Console.WriteLine("toolBridge.SoldItem : {0}, defaultCommissionCalculator commission : {1}", toolBridge.SoldItems, toolBridge.GetCommission());
+            
+            var toolBridge2 = new ToolBridge(incentiveCommissionCalculator);
+             toolBridge2.SoldItems = numberOfSoldTools;
+             Console.WriteLine("toolBridge2.SoldItem : {0}, incentiveCommissionCalculator commission : {1}", toolBridge2.SoldItems, toolBridge2.GetCommission());
 
         }
     }
