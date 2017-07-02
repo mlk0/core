@@ -1,6 +1,8 @@
+using System;
+
 namespace Bridge.ProductCategories
 {
-    public class Tool : Product
+    public class Tool : IProduct
     {
         private int numberOfSoldItems;
 
@@ -11,6 +13,8 @@ namespace Bridge.ProductCategories
 
         public string Material { get; set; }
         public int NumberOfSoldTools { get { return this.numberOfSoldItems; } }
+
+        public string Name { get; set; }
 
         public decimal GetCommission()
         {
@@ -34,6 +38,11 @@ namespace Bridge.ProductCategories
             }
 
             return commission;
+        }
+
+        public decimal GetCommission(ICommissionCalculator commissionCalculator)
+        {
+            return commissionCalculator.CalcuateCommision(this.numberOfSoldItems);
         }
     }
 }

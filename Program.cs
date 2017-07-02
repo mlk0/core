@@ -30,6 +30,7 @@ namespace core
                 Console.WriteLine("tool.GetCommission : {0} for {1} sold items", soldTools.GetCommission().ToString(), soldTools.NumberOfSoldTools.ToString());
 
 
+            
              Console.WriteLine("Set the number of sold lumber");
             
              Lumber soldLumber = null;
@@ -48,6 +49,39 @@ namespace core
            
            
             Console.WriteLine("lumber.GetCommission : {0} for {1} sold items", soldLumber.GetCommission().ToString(), soldLumber.NumberOfSoldLumber.ToString());
+            Console.WriteLine("Implementation with ICommissionCalcuator passed to the GetCommissiion\r\n press key to continue ...");
+            Console.ReadLine();
+
+            soldTools.Name = "Tool";
+            Console.WriteLine("Product : {0}, sold quantity : {1}, following is the commission calculation:", soldTools.Name, soldTools.NumberOfSoldTools);
+            var defaultCommissionCalculator = new DefaultCommisionCalculator();
+            var defaultToolCommission = soldTools.GetCommission(defaultCommissionCalculator);
+
+            var incentiveCommissionCalculator = new IncentiveCommissionCalculator();
+            var incetiveToolCommission = soldTools.GetCommission(incentiveCommissionCalculator);
+
+            var toolsCommissionCalculator = new ToolsCommissionCalculator();
+            var toolToolCommission = soldTools.GetCommission(toolsCommissionCalculator);
+
+            Console.WriteLine("defaultToolCommission : {0}, incetiveToolCommission : {1}, toolToolCommission : {2}", defaultToolCommission, incetiveToolCommission, toolToolCommission);
+
+
+ soldLumber.Name = "Lumber";
+            Console.WriteLine("Product : {0}, sold quantity : {1}, following is the commission calculation:", soldLumber.Name, soldLumber.NumberOfSoldLumber);
+            
+            var defaultLumberCommission = soldTools.GetCommission(defaultCommissionCalculator);
+
+            
+            var incetiveLumberCommission = soldTools.GetCommission(incentiveCommissionCalculator);
+
+            var lumberCommissionCalculator = new LumberCommissionCalculator();
+            var lumberLumberCommission = soldTools.GetCommission(lumberCommissionCalculator);
+
+            Console.WriteLine("defaultLumberCommission : {0}, incetiveLumberCommission : {1}, lumberLumberCommission : {2}",
+             defaultLumberCommission, incetiveLumberCommission, lumberLumberCommission);
+
+
+
 
         }
     }
